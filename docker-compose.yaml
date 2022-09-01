@@ -1,0 +1,12 @@
+version: "3"
+services:
+  tljh:
+    image: attap0n/tljh-systemd:latest
+    privileged: true
+    restart: always
+    ports:
+      - 12000:80
+    environment:
+      TZ: Asia/Bangkok
+    volumes:
+      - ./config.yaml:/opt/tljh/config/config.yaml
