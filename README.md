@@ -4,7 +4,7 @@
 
 ## Documentation
 
-Our latest documentation is at: https://the-littlest-jupyterhub.readthedocs.io
+Our latest documentation is at: [https://the-littlest-jupyterhub.readthedocs.io](https://the-littlest-jupyterhub.readthedocs.io)
 
 We place a high importance on consistency, readability and completeness of
 documentation. If a feature is not documented, it does not exist. If a behavior
@@ -16,10 +16,13 @@ happy if you could [file an issue](https://github.com/jupyterhub/the-littlest-ju
 even better, [contribute a documentation fix](http://the-littlest-jupyterhub.readthedocs.io/en/latest/contributing/docs.html)!
 
 ## Requirement
- - docker - [https://www.docker.com/](https://www.docker.com/)
- - docker-compose  - [https://github.com/docker/compose](https://github.com/docker/compose)
+
+- docker - [https://www.docker.com/](https://www.docker.com/)
+
+- docker-compose  - [https://github.com/docker/compose](https://github.com/docker/compose)
 
 ## Quick Start
+
 ```shell
 git clone https://github.com/attapon-th/tljh-docker
 
@@ -30,16 +33,18 @@ cd tljh-docker
 # set admin user
 # ./start-tljh.sh <username>:<password>
 ```
+
 > wait setup  ~ `2-10 min`  
 > can show progress page url: [http://localhost:12000/](http://localhost:12000/)
 
-
 ### Open URL: [http://localhost:12000/tljh](http://localhost:12000/tljh)
+
 > Default admin user: `admin`, pass: `admin`
-> 
 
 ### Add Admin
+
 example: `admin_user2:admin_user2`
+
 ```shell
 ./start-tljh.sh admin_user2:admin_user2
 ```
