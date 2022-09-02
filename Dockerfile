@@ -8,8 +8,7 @@ ENV \
     DEBIAN_FRONTEND=noninteractive \
     DEBCONF_NONINTERACTIVE_SEEN=true \
     PYTHONUNBUFFERED=1 \
-    TZ=Asia/Bangkok \
-    TLJH_INSTALL_PREFIX=/opt/tljh
+    TZ=Asia/Bangkok
 
 
 
@@ -18,6 +17,7 @@ ENV \
 RUN export DEBIAN_FRONTEND=noninteractive \
     && apt-get update \
     && apt-get install --yes \
+    build-essential \
     systemd \
     curl \
     git \
@@ -25,10 +25,10 @@ RUN export DEBIAN_FRONTEND=noninteractive \
     python3 \
     python3-venv \
     python3-pip \
+    libssl-dev \
+    libcurl4-openssl-dev \
     && rm -rf /var/lib/apt/lists/*
 
-RUN mkdir -p $TLJH_INSTALL_PREFIX/hub \
-    && python3 -m venv $TLJH_INSTALL_PREFIX/hub 
 
 
 # Kill all the things we don't need
@@ -49,10 +49,9 @@ STOPSIGNAL SIGRTMIN+3
 # Uncomment these lines for a development install
 # ENV TLJH_BOOTSTRAP_DEV=yes \
 #     TLJH_BOOTSTRAP_PIP_SPEC=/srv/src \
-ENV PATH=/opt/tljh/hub/bin:${PATH}
-
-COPY ./bootstrap.sh /opt/tljh/hub/bin/bootstrap
+ENV PATH=/opt/tljh/hub/bin:${PATH} 
 
 EXPOSE 80
+
 
 CMD ["/bin/bash", "-c", "exec /lib/systemd/systemd --log-target=journal 3>&1"]

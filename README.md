@@ -15,16 +15,42 @@ If something is confusing to you in the documentation, it is a bug. We would be
 happy if you could [file an issue](https://github.com/jupyterhub/the-littlest-jupyterhub/issues) about it - or
 even better, [contribute a documentation fix](http://the-littlest-jupyterhub.readthedocs.io/en/latest/contributing/docs.html)!
 
-## How to use;
+## Requirement
+ - docker - [https://www.docker.com/](https://www.docker.com/)
+ - docker-compose  - [https://github.com/docker/compose](https://github.com/docker/compose)
 
-### 1. Create directory project
-
+## Quick Start
 ```shell
-mkdir my-tljh
-cd my-tljh
+git clone https://github.com/attapon-th/tljh-docker
+
+cd tljh-docker
+
+./start-tljh.sh
+
+# set admin user
+# ./start-tljh.sh <username>:<password>
+```
+> wait setup  ~ `2-10 min`  
+> can show progress page url: [http://localhost:12000/](http://localhost:12000/)
+
+
+### Open URL: [http://localhost:12000/tljh](http://localhost:12000/tljh)
+> Default admin user: `admin`, pass: `admin`
+> 
+
+### Add Admin
+example: `admin_user2:admin_user2`
+```shell
+./start-tljh.sh admin_user2:admin_user2
 ```
 
-### 2. Create config file: `config.yaml`
+---
+
+## Configuration
+
+Reference: [https://tljh.jupyter.org/en/latest/topic/tljh-config.html](https://tljh.jupyter.org/en/latest/topic/tljh-config.html)
+
+### filename: `config.yaml`
 
 ```yaml
 base_url: /tljh # http://localhost/tljh
@@ -32,13 +58,13 @@ limits:
   memory: 4G
   cpu: 2
 user_environment:
-  default_app: jupyterlab # set defualt page [classic,jupyterlab,nteract](default: classic (notebook))
+  default_app: jupyterlab # set default startup app
 services:
-  cull: # Culling idle notebook servers (https://tljh.jupyter.org/en/latest/topic/idle-culler.html?highlight=cull#culling-idle-notebook-servers)
+  cull: 
     enabled: false # not  shutdown user server
 ```
 
-### 3. Create compose file `docker-compose.yaml`
+### Compose file `docker-compose.yaml`
 
 ```yaml
 version: "3"
@@ -53,19 +79,3 @@ services:
     volumes:
       - ./config.yaml:/opt/tljh/config/config.yaml:rw # map config file
 ```
-
-### 4. Run container with `docker-compose`
-
-```shell
-docker-compose up -d
-```
-
-### 5. Create AdminAccount (username: `admin` password: `admin`)
-
-```shell
-docker-compose exec -it tljh bootstrap --admin admin:admin
-```
-
-> same `sudo python3 /srv/src/bootstrap/bootstrap.py --show-progress-page --admin admin:admin`
-
-### 6. Use [http://localhost:12000/tljh](http://localhost:12000/tljh)
