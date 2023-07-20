@@ -480,7 +480,7 @@ def main():
     logger.info("Upgrading pip...")
     run_subprocess([hub_env_pip, "install", "--upgrade", "pip"])
 
-    logger.ingo("Installing miniconda...")
+    logger.info("Installing miniconda...")
     run_subprocess(["wget", "https://repo.anaconda.com/miniconda/Miniconda3-py311_23.5.2-0-Linux-x86_64.sh"])
     run_subprocess(["bash", "Miniconda3-py311_23.5.2-0-Linux-x86_64.sh"])
 
