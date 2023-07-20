@@ -506,20 +506,19 @@ def main():
         logger.info("Upgrading TLJH installer...")
     run_subprocess(tljh_install_cmd)
 
+     logger.info("Installing conda...")
+    run_subprocess([hub_env_pip, "install", "conda"])
+    
+    logger.info("Updading conda")
+    run_subprocess(["conda", "udpate", "conda"])
+    
+    logger.info ("Install SysmlV2 kernel")
+    run_subprocess(["conda", "install", "-c", "conda-forge", "jupyter-sysml-kernel", "-y"])
+
     # Run TLJH installer
     logger.info("Running TLJH installer...")
     os.execv(
         hub_env_python, [hub_env_python, "-m", "tljh.installer"] + tljh_installer_flags
-        
-        logger.info("Installing miniconda...")
-        run_subprocess(["pip", "install", "conda"])
-    
-        logger.info("Updading conda")
-        run_subprocess(["conda", "udpate", "conda"])
-    
-        logger.info ("Install SysmlV2 kernel")
-        run_subprocess(["conda", "install", "-c", "conda-forge", "jupyter-sysml-kernel", "-y"])
-
     )
     
     logger.info("Base install complete")
