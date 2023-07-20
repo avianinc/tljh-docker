@@ -506,7 +506,7 @@ def main():
         logger.info("Upgrading TLJH installer...")
     run_subprocess(tljh_install_cmd)
 
-     logger.info("Installing conda...")
+    logger.info("Installing conda...")
     run_subprocess([hub_env_pip, "install", "conda"])
     
     logger.info("Updading conda")
