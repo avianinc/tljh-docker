@@ -479,13 +479,6 @@ def main():
 
     logger.info("Upgrading pip...")
     run_subprocess([hub_env_pip, "install", "--upgrade", "pip"])
-
-    logger.info("Installing miniconda...")
-    run_subprocess(["wget", "https://repo.anaconda.com/miniconda/Miniconda3-py311_23.5.2-0-Linux-x86_64.sh"])
-    run_subprocess(["bash", "Miniconda3-py311_23.5.2-0-Linux-x86_64.sh", "-b"])
-
-    logger.info("Updading conda")
-    run_subprocess(["conda", "udpate", "conda"])
     
     # pip install TLJH installer based on
     #
@@ -518,6 +511,12 @@ def main():
     os.execv(
         hub_env_python, [hub_env_python, "-m", "tljh.installer"] + tljh_installer_flags
     )
+    
+    logger.info("Installing miniconda...")
+    run_subprocess(["pip", "install", "conda"])
+
+    logger.info("Updading conda")
+    run_subprocess(["conda", "udpate", "conda"])
 
     logger.info ("Install SysmlV2 kernel")
     run_subprocess(["conda", "install", "-c", "conda-forge", "jupyter-sysml-kernel", "-y"])
