@@ -504,16 +504,16 @@ def main():
         logger.info("Installing TLJH installer...")
     else:
         logger.info("Upgrading TLJH installer...")
-    run_subprocess(tljh_install_cmd)
+        run_subprocess(tljh_install_cmd)
 
-    logger.info("Installing conda...")
-    run_subprocess([hub_env_pip, "install", "conda"])
-    
-    logger.info("Updading conda")
-    run_subprocess(["conda", "udpate", "conda"])
-    
-    logger.info ("Install SysmlV2 kernel")
-    run_subprocess(["conda", "install", "-c", "conda-forge", "jupyter-sysml-kernel", "-y"])
+        logger.info("Installing conda...")
+        run_subprocess([hub_env_pip, "install", "conda"])
+        
+        logger.info("Updading conda")
+        run_subprocess(["conda", "udpate", "conda"])
+        
+        logger.info ("Install SysmlV2 kernel")
+        run_subprocess(["conda", "install", "-c", "conda-forge", "jupyter-sysml-kernel", "-y"])
 
     # Run TLJH installer
     logger.info("Running TLJH installer...")
